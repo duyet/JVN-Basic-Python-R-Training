@@ -10,7 +10,7 @@ Python tutorial by Justin Johnson ([http://cs231n.github.io/python-numpy-tutoria
 
 # Lecture list
 
-1. Introduction to Python
+1. Introduction to Python [[PDF Session 1](pdf/session_1.pdf)]
 
     * What and Why is Python: the signicance of Python in computer science, data science community and other fields.
     * How to setup and access Python environment (e.g: install, start, stop). Students are required to be familiar with using command line to carry out some code.
@@ -33,7 +33,7 @@ Python tutorial by Justin Johnson ([http://cs231n.github.io/python-numpy-tutoria
 
     * Introduce String/List and basic built-in functions and operators for String/List.
     * Structure of Python files. Read/create a file.
-    * Read csv file using \textit{Pandas} library
+    * Read csv file using `Pandas` library
 
 5. Functions in Python, Debugging.
 
