@@ -10,12 +10,12 @@ Python tutorial by Justin Johnson ([http://cs231n.github.io/python-numpy-tutoria
 
 # Lecture list
 
-1. **Introduction to Python**
+1. Introduction to Python
 
-    * **What and Why is Python: the signicance of Python in computer science, data science community and other fields.**
-    * **How to setup and access Python environment (e.g: install, start, stop). Students are required to be familiar with using command line to carry out some code.**
-    * **Simple Python convention (variables, constants, operations) and coding convention (naming variables).**
-    * **Function**
+    * What and Why is Python: the signicance of Python in computer science, data science community and other fields.
+    * How to setup and access Python environment (e.g: install, start, stop). Students are required to be familiar with using command line to carry out some code.
+    * Simple Python convention (variables, constants, operations) and coding convention (naming variables).
+    * Function
 
 2. The Python Standard Library, if/loops statements
 
