@@ -439,7 +439,16 @@ from one type to another.
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} [5, 7, 9, 11, 13, 15, 17, 19]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
         \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         
         \PY{n+nb}{zip}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
@@ -447,7 +456,7 @@ from one type to another.
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}5}]:} [(1, 'a'), (2, 'b'), (3, 'c')]
+{\color{outcolor}Out[{\color{outcolor}6}]:} [(1, 'a'), (2, 'b'), (3, 'c')]
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -480,12 +489,12 @@ a
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fruit}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nb}{len}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} 6
+{\color{outcolor}Out[{\color{outcolor}7}]:} 2
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -518,27 +527,54 @@ Suppose we have s = "Hello"
 \end{figure}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{s} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hello}\PY{l+s+s2}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{s} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hello}\PY{l+s+s2}{\PYZdq{}}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{print} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{print} \PY{n}{s}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{]}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-He
+oll
 
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{print} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} 'oll'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{s}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 'ell'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{s}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} 'olle'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k}{print} \PY{n}{s}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-llo
+ll
 
     \end{Verbatim}
 
@@ -581,6 +617,24 @@ less than 3, leave it unchanged.
 \end{Highlighting}
 \end{Shaded}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Solution }
+        \PY{k}{def} \PY{n+nf}{add\PYZus{}string}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{3}\PY{p}{:} \PY{k}{return} \PY{n}{s}
+            \PY{k}{if} \PY{n}{s}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k}{return} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ly}\PY{l+s+s1}{\PYZsq{}}
+            \PY{k}{return} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ing}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{k}{print} \PY{n}{add\PYZus{}string}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{string}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k}{print} \PY{n}{add\PYZus{}string}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+stringly
+abcing
+
+    \end{Verbatim}
+
     Ex2. Write a Python program to remove the nth index character from a
 nonempty string.
 
@@ -597,19 +651,50 @@ Expect result
 \end{Highlighting}
 \end{Shaded}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Solution}
+        \PY{k}{def} \PY{n+nf}{remove\PYZus{}char}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{index}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{s}\PY{p}{[}\PY{p}{:}\PY{n}{index}\PY{p}{]} \PY{o}{+} \PY{n}{s}\PY{p}{[}\PY{n}{index}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+        
+        \PY{n}{remove\PYZus{}char}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Python}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 'ython'
+\end{Verbatim}
+            
     Ex3. Write a Python function to insert a string in the middle of a
-string
+string. Using \textbf{remove\_char()} function in Ex2 to remove the
+middle char.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \OperatorTok{>>>}\NormalTok{ insert_middle(}\StringTok{'}\SpecialCharTok{\{\{\}\}}\StringTok{'}\NormalTok{, }\StringTok{'JVN'}\NormalTok{)}
     \CommentTok{"\{\{JVN\}\}"}
     
-\OperatorTok{>>>}\NormalTok{ insert_middle(}\StringTok{'[[]]'}\NormalTok{, }\StringTok{'JVN'}\NormalTok{)}
+\OperatorTok{>>>}\NormalTok{ insert_middle(}\StringTok{'[[x]]'}\NormalTok{, }\StringTok{'JVN'}\NormalTok{)}
     \CommentTok{"[[JVN]]}
 \end{Highlighting}
 \end{Shaded}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Solution}
+        \PY{k}{def} \PY{n+nf}{insert\PYZus{}middle}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{sub\PYZus{}s}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                \PY{n}{s} \PY{o}{=} \PY{n}{remove\PYZus{}char}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}
+            
+            \PY{n}{middle\PYZus{}index} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+            \PY{k}{return} \PY{n}{s}\PY{p}{[}\PY{p}{:}\PY{n}{middle\PYZus{}index}\PY{p}{]} \PY{o}{+} \PY{n}{sub\PYZus{}s} \PY{o}{+} \PY{n}{s}\PY{p}{[}\PY{n}{middle\PYZus{}index}\PY{p}{:}\PY{p}{]}
+        
+        \PY{n}{insert\PYZus{}middle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[[x]]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{JVN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} '[[JVN]]'
+\end{Verbatim}
+            
     Ex4. Write a Python program to count the occurrences of each word in a
 given sentence
 
@@ -620,20 +705,99 @@ given sentence
 \end{Highlighting}
 \end{Shaded}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{word\PYZus{}count}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{:}
+            \PY{n}{s} \PY{o}{=} \PY{n}{s}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+            \PY{n}{wc} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+            \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{s}\PY{p}{:}
+                \PY{n}{wc}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{=} \PY{n}{wc}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{word}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}
+            
+            \PY{k}{return} \PY{n}{wc}
+        
+        \PY{n}{word\PYZus{}count}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the quick brown fox jumps over the lazy dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} \{'brown': 1,
+         'dog': 1,
+         'fox': 1,
+         'jumps': 1,
+         'lazy': 1,
+         'over': 1,
+         'quick': 1,
+         'the': 2\}
+\end{Verbatim}
+            
     Ex5. Write a Python program to get the domain of URL
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \OperatorTok{>>>}\NormalTok{ get_domain(}\StringTok{"https://www.kaggle.com/wiki/Tutorials"}\NormalTok{)}
     \CommentTok{"www.kaggle.com"}
-
-\OperatorTok{>>>}\NormalTok{ get_domain(}\StringTok{"https://jvn.edu.vn/xyz"}\NormalTok{)}
+    
+\OperatorTok{>>>}\NormalTok{ get_domain(}\StringTok{"http://www.kaggle.com/wiki/Tutorials"}\NormalTok{)}
+    \CommentTok{"www.kaggle.com"}
+    
+\OperatorTok{>>>}\NormalTok{ get_domain(}\StringTok{"jvn.edu.vn/xyz"}\NormalTok{)}
     \CommentTok{"jvn.edu.vn"}
 \end{Highlighting}
 \end{Shaded}
 
-Extras: * Using regex to detect domain. Library \texttt{re} * Using
-another library
+Extras: * Using another library * Using regex to detect domain. Library
+\texttt{re}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Solution 1}
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}domain}\PY{p}{(}\PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+             \PY{n}{url} \PY{o}{=} \PY{n}{url}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{http://}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{return} \PY{n}{url}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         
+         \PY{k}{print} \PY{n}{get\PYZus{}domain}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://www.kaggle.com/wiki/Tutorials}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+www.kaggle.com
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} Solution extra 1}
+         \PY{k+kn}{from} \PY{n+nn}{urlparse} \PY{k+kn}{import} \PY{n}{urlparse}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}domain}\PY{p}{(}\PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+             \PY{n}{o} \PY{o}{=} \PY{n}{urlparse}\PY{p}{(}\PY{n}{url}\PY{p}{)}
+             \PY{k}{return} \PY{n}{o}\PY{o}{.}\PY{n}{netloc}
+         
+         \PY{k}{print} \PY{n}{get\PYZus{}domain}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://www.kaggle.com/wiki/Tutorials}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+www.kaggle.com
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} Solution extra 2}
+         \PY{k+kn}{import} \PY{n+nn}{re}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}domain}\PY{p}{(}\PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+             \PY{n}{domain\PYZus{}patern} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZca{}(https?:}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{/}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{/)?([a\PYZhy{}z0\PYZhy{}9]+}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{.[a\PYZhy{}z]+}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{.[a\PYZhy{}z]+?)}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{/}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{o} \PY{o}{=} \PY{n}{domain\PYZus{}patern}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{url}\PY{p}{)}
+             \PY{k}{return} \PY{n}{o}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+             
+         \PY{k}{print} \PY{n}{get\PYZus{}domain}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{http://www.kaggle.com/wiki/Tutorials}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{print} \PY{n}{get\PYZus{}domain}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{www.kaggle.com/wiki/Tutorials}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+www.kaggle.com
+www.kaggle.com
+
+    \end{Verbatim}
 
     Read more: Regular expression
 (\url{https://docs.python.org/2/howto/regex.html})
@@ -785,6 +949,15 @@ within an iterable object container, such as a list:
 {\color{outcolor}Out[{\color{outcolor}19}]:} False
 \end{Verbatim}
             
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dsdfdsfd}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} True
+\end{Verbatim}
+            
     \subsection{IF statements}\label{if-statements}
 
 \subsubsection{if-else}\label{if-else}
@@ -801,7 +974,7 @@ The basic if-else statement in Python is as follows:
 \end{Shaded}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{mark} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{What is your mark: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{mark} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{What is your mark: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
          \PY{k}{if} \PY{n}{mark} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{50}\PY{p}{:}
              \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Pass}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
          \PY{k}{else}\PY{p}{:}
@@ -810,7 +983,7 @@ The basic if-else statement in Python is as follows:
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-What is your mark: 10
+What is your mark: 5
 Fail
 
     \end{Verbatim}
@@ -952,7 +1125,7 @@ in which the arguments of range are used as follows:
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -984,6 +1157,60 @@ integer numbers (input from the user). Input 0 to finish
 \end{Highlighting}
 \end{Shaded}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Solution 1}
+        \PY{n}{number} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{n}{Sum} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{0}
+        
+        \PY{k}{while} \PY{n}{number} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{number} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{raw\PYZus{}input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Input number: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+            \PY{n}{Sum} \PY{o}{+}\PY{o}{=} \PY{n}{number} \PY{c+c1}{\PYZsh{} Sum = Sum + n}
+            \PY{n}{n} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sum = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Sum}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Avg = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{Sum}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Input number: 6
+Input number: 7
+Input number: 10
+Input number: 0
+Sum =  23
+Avg =  7.66666666667
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Solution 2}
+        \PY{n}{Sum} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{0}
+        
+        \PY{k}{while} \PY{n+nb+bp}{True}\PY{p}{:}
+            \PY{n}{number} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{raw\PYZus{}input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Input number: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+            \PY{k}{if} \PY{n}{number} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{break}
+                
+            \PY{n}{Sum} \PY{o}{+}\PY{o}{=} \PY{n}{number}
+            \PY{n}{n} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sum = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Sum}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Avg = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{Sum}\PY{p}{)} \PY{o}{/} \PY{n}{n}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Input number: 6
+Input number: 7
+Input number: 10
+Input number: 0
+Sum =  23
+Avg =  7.66666666667
+
+    \end{Verbatim}
+
     Ex2. Write a Python program to create the multiplication table (from 1
 to 10) of a number.
 
@@ -1002,6 +1229,29 @@ to 10) of a number.
 \DecValTok{6}\NormalTok{ x }\DecValTok{10} \OperatorTok{=} \DecValTok{60} 
 \end{Highlighting}
 \end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Solution}
+        \PY{n}{n} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Input a number: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{)}\PY{p}{:}
+            \PY{k}{print} \PY{n}{n}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{n}\PY{o}{*}\PY{n}{i}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Input a number: 6
+6 x 1 = 6
+6 x 2 = 12
+6 x 3 = 18
+6 x 4 = 24
+6 x 5 = 30
+6 x 6 = 36
+6 x 7 = 42
+6 x 8 = 48
+6 x 9 = 54
+6 x 10 = 60
+
+    \end{Verbatim}
 
     Ex3. Write a Python program to construct the following pattern, using a
 nested loop number.
@@ -1023,9 +1273,32 @@ nested loop number.
 \end{Shaded}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Solution}
+        \PY{n}{n} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n =}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                \PY{k}{print} \PY{n}{i}\PY{p}{,}
+            \PY{k}{print} 
 \end{Verbatim}
 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+n =9
+
+
+1
+2 2
+3 3 3
+4 4 4 4
+5 5 5 5 5
+6 6 6 6 6 6
+7 7 7 7 7 7 7
+8 8 8 8 8 8 8 8
+9 9 9 9 9 9 9 9 9
+
+    \end{Verbatim}
 
     \subsection{While loops}\label{while-loops}
 
@@ -1063,20 +1336,12 @@ This diagram shows the flow of control in a while loop:
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{input\PYZus{}text} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{run}\PY{l+s+s2}{\PYZdq{}}
-         \PY{k}{while} \PY{n}{input\PYZus{}text} \PY{o}{!=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{exit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
-             \PY{n}{input\PYZus{}text} \PY{o}{=} \PY{n+nb}{raw\PYZus{}input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Please type }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{exit}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ to quit this program: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quit !!!}\PY{l+s+s2}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{input\PYZus{}text} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{run}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{while} \PY{n}{input\PYZus{}text} \PY{o}{!=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{exit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            \PY{n}{input\PYZus{}text} \PY{o}{=} \PY{n+nb}{raw\PYZus{}input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Please type }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{exit}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ to quit this program: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quit !!!}\PY{l+s+s2}{\PYZdq{}}
 \end{Verbatim}
 
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Please type 'exit' to quit this program: hi
-Please type 'exit' to quit this program: hello
-Please type 'exit' to quit this program: exit
-Quit !!!
-
-    \end{Verbatim}
 
     \subsection{"break" and "continue"
 statements}\label{break-and-continue-statements}
@@ -1153,6 +1418,32 @@ Hint: Using \texttt{loop}, \texttt{continue} and \texttt{break}
 \end{Highlighting}
 \end{Shaded}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Solution}
+         \PY{n}{numbers} \PY{o}{=} \PY{p}{[}
+             \PY{l+m+mi}{951}\PY{p}{,} \PY{l+m+mi}{402}\PY{p}{,} \PY{l+m+mi}{984}\PY{p}{,} \PY{l+m+mi}{651}\PY{p}{,} \PY{l+m+mi}{360}\PY{p}{,} \PY{l+m+mi}{69}\PY{p}{,} \PY{l+m+mi}{408}\PY{p}{,} \PY{l+m+mi}{319}\PY{p}{,} \PY{l+m+mi}{601}\PY{p}{,} \PY{l+m+mi}{485}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,} \PY{l+m+mi}{507}\PY{p}{,} \PY{l+m+mi}{725}\PY{p}{,} \PY{l+m+mi}{547}\PY{p}{,} \PY{l+m+mi}{544}\PY{p}{,}
+             \PY{l+m+mi}{615}\PY{p}{,} \PY{l+m+mi}{83}\PY{p}{,} \PY{l+m+mi}{165}\PY{p}{,} \PY{l+m+mi}{141}\PY{p}{,} \PY{l+m+mi}{501}\PY{p}{,} \PY{l+m+mi}{263}\PY{p}{,} \PY{l+m+mi}{617}\PY{p}{,} \PY{l+m+mi}{865}\PY{p}{,} \PY{l+m+mi}{575}\PY{p}{,} \PY{l+m+mi}{219}\PY{p}{,} \PY{l+m+mi}{390}\PY{p}{,} \PY{l+m+mi}{984}\PY{p}{,} \PY{l+m+mi}{592}\PY{p}{,} \PY{l+m+mi}{236}\PY{p}{,} \PY{l+m+mi}{105}\PY{p}{,} \PY{l+m+mi}{942}\PY{p}{,} \PY{l+m+mi}{941}\PY{p}{,}
+             \PY{l+m+mi}{386}\PY{p}{,} \PY{l+m+mi}{462}\PY{p}{,} \PY{l+m+mi}{47}\PY{p}{,} \PY{l+m+mi}{418}\PY{p}{,} \PY{l+m+mi}{907}\PY{p}{,} \PY{l+m+mi}{344}\PY{p}{,} \PY{l+m+mi}{236}\PY{p}{,} \PY{l+m+mi}{375}\PY{p}{,} \PY{l+m+mi}{823}\PY{p}{,} \PY{l+m+mi}{566}\PY{p}{,} \PY{l+m+mi}{597}\PY{p}{,} \PY{l+m+mi}{978}\PY{p}{,} \PY{l+m+mi}{328}\PY{p}{,} \PY{l+m+mi}{615}\PY{p}{,} \PY{l+m+mi}{953}\PY{p}{,} \PY{l+m+mi}{345}\PY{p}{,}
+             \PY{l+m+mi}{399}\PY{p}{,} \PY{l+m+mi}{162}\PY{p}{,} \PY{l+m+mi}{758}\PY{p}{,} \PY{l+m+mi}{219}\PY{p}{,} \PY{l+m+mi}{918}\PY{p}{,} \PY{l+m+mi}{237}\PY{p}{,} \PY{l+m+mi}{412}\PY{p}{,} \PY{l+m+mi}{566}\PY{p}{,} \PY{l+m+mi}{826}\PY{p}{,} \PY{l+m+mi}{248}\PY{p}{,} \PY{l+m+mi}{866}\PY{p}{,} \PY{l+m+mi}{950}\PY{p}{,} \PY{l+m+mi}{626}\PY{p}{,} \PY{l+m+mi}{949}\PY{p}{,} \PY{l+m+mi}{687}\PY{p}{,} \PY{l+m+mi}{217}\PY{p}{,}
+             \PY{l+m+mi}{815}\PY{p}{,} \PY{l+m+mi}{67}\PY{p}{,} \PY{l+m+mi}{104}\PY{p}{,} \PY{l+m+mi}{58}\PY{p}{,} \PY{l+m+mi}{512}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{,} \PY{l+m+mi}{892}\PY{p}{,} \PY{l+m+mi}{894}\PY{p}{,} \PY{l+m+mi}{767}\PY{p}{,} \PY{l+m+mi}{553}\PY{p}{,} \PY{l+m+mi}{81}\PY{p}{,} \PY{l+m+mi}{379}\PY{p}{,} \PY{l+m+mi}{843}\PY{p}{,} \PY{l+m+mi}{831}\PY{p}{,} \PY{l+m+mi}{445}\PY{p}{,} \PY{l+m+mi}{742}\PY{p}{,} \PY{l+m+mi}{717}\PY{p}{,}
+             \PY{l+m+mi}{958}\PY{p}{,} \PY{l+m+mi}{609}\PY{p}{,} \PY{l+m+mi}{842}\PY{p}{,} \PY{l+m+mi}{451}\PY{p}{,} \PY{l+m+mi}{688}\PY{p}{,} \PY{l+m+mi}{753}\PY{p}{,} \PY{l+m+mi}{854}\PY{p}{,} \PY{l+m+mi}{685}\PY{p}{,} \PY{l+m+mi}{93}\PY{p}{,} \PY{l+m+mi}{857}\PY{p}{,} \PY{l+m+mi}{440}\PY{p}{,} \PY{l+m+mi}{380}\PY{p}{,} \PY{l+m+mi}{126}\PY{p}{,} \PY{l+m+mi}{721}\PY{p}{,} \PY{l+m+mi}{328}\PY{p}{,} \PY{l+m+mi}{753}\PY{p}{,} \PY{l+m+mi}{470}\PY{p}{,}
+             \PY{l+m+mi}{743}\PY{p}{,} \PY{l+m+mi}{527}
+         \PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{numbers}\PY{p}{:}
+             \PY{k}{if} \PY{n}{n} \PY{o}{==} \PY{l+m+mi}{237}\PY{p}{:}
+                 \PY{k}{break}
+             \PY{k}{if} \PY{n}{n} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{k}{continue}
+             \PY{k}{print} \PY{n}{n}\PY{p}{,} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+951 651 69 319 601 485 507 725 547 615 83 165 141 501 263 617 865 575 219 105 941 47 907 375 823 597 615 953 345 399 219
+
+    \end{Verbatim}
+
     Ex2. \textbf{Faces on Money}
 
 It is common for images of a country's previous leaders, or other
@@ -1180,7 +1471,89 @@ from the user. Then your program should display the name of the
 individual that appears on the banknote of the entered amount. An
 appropriate error message should be displayed if no such note exists.
 
-    Ex2. Implement insertion sort in Python.
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Solution}
+        \PY{n}{banknotes} \PY{o}{=} \PY{p}{\PYZob{}}
+            \PY{l+m+mi}{1}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{George Washington}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{l+m+mi}{2}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Thomas Jefferson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{l+m+mi}{5}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abraham Lincoln}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{l+m+mi}{10}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Alexander Hamilton}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{l+m+mi}{20}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Andrew Jackson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{l+m+mi}{50}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ulysses S. Grant}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+            \PY{l+m+mi}{100}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Benjamin Frankli}\PY{l+s+s1}{\PYZsq{}}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} reading the denomination of a banknote}
+        \PY{n}{amount} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Please enter amount: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{while} \PY{n}{amount} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{100} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}100)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{100}
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{50} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{50}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}50)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{50}   
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{20} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{20}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}20)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{20}
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{10} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}10)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{10}
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{5} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}5)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{5}
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{2} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}2)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2}
+            \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{1} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}1)}\PY{l+s+s1}{\PYZsq{}}
+                \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Please enter amount: 345
+3  x  Benjamin Frankli (\$100)
+2  x  Andrew Jackson (\$20)
+1  x  Abraham Lincoln (\$5)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Solution for shorter}
+         
+         \PY{n}{banknotes} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{l+m+mi}{1}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{George Washington}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+m+mi}{2}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Thomas Jefferson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+m+mi}{5}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abraham Lincoln}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+m+mi}{10}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Alexander Hamilton}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+m+mi}{20}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Andrew Jackson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+m+mi}{50}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ulysses S. Grant}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+             \PY{l+m+mi}{100}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Benjamin Frankli}\PY{l+s+s1}{\PYZsq{}}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+c1}{\PYZsh{} reading the denomination of a banknote}
+         \PY{n}{amount} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Please enter amount: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{while} \PY{n}{amount} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{banknotes}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{amount} \PY{o}{/} \PY{n}{i} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                     \PY{k}{print} \PY{p}{(}\PY{n}{amount} \PY{o}{/} \PY{n}{i}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ x }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{banknotes}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}
+                     \PY{n}{amount} \PY{o}{=} \PY{n}{amount} \PY{o}{\PYZpc{}} \PY{n}{i}
+                     \PY{k}{break}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Please enter amount: 456
+4  x  Benjamin Frankli (\$100)
+1  x  Ulysses S. Grant (\$50)
+1  x  Abraham Lincoln (\$5)
+1  x  George Washington (\$1)
+
+    \end{Verbatim}
+
+    Ex3. (Bonus) Implement insertion sort in Python.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1188,7 +1561,7 @@ appropriate error message should be displayed if no such note exists.
 \end{Highlighting}
 \end{Shaded}
 
-    Ex3. Implement selection sort in Python.
+    Ex4. (Bonus) Implement selection sort in Python.
 
 \begin{Shaded}
 \begin{Highlighting}[]
