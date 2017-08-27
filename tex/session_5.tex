@@ -1,0 +1,993 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Python R training course - Session 5}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \textbf{Lecture list}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Introduction to Python
+\item
+  The Python Standard Library, if/loops statements
+\item
+  Vector/matrix structures, \texttt{numpy} library
+\item
+  Python data types, File Processing, \texttt{Pandas} library
+\item
+  \textbf{Functions in Python, Debugging.}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Lambda function.
+  \item
+    Recursion.
+  \item
+    Common errors in Python.
+  \end{itemize}
+\item
+  Introduction to R, R for Python programmers.
+\item
+  Import data, plot data.
+\item
+  Data Mining in Python/R.
+\end{enumerate}
+
+    \section{Lambda function}\label{lambda-function}
+
+\subsection{Syntax of Lambda Function}\label{syntax-of-lambda-function}
+
+In Python, anonymous function (lambda function) is a function that is
+defined without a name.
+
+While normal functions are defined using the \textbf{def} keyword, in
+Python anonymous functions are defined using the \textbf{lambda}
+keyword. Hence, anonymous functions are also called lambda functions.
+
+Syntax:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lambda}\NormalTok{ arguments: expression}
+\end{Highlighting}
+\end{Shaded}
+
+Example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>}\NormalTok{ S }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ a, b: a }\OperatorTok{+}\NormalTok{ b}
+\OperatorTok{>>>}\NormalTok{ S(}\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+    \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>}\NormalTok{ double }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ x: x }\OperatorTok{*} \DecValTok{2}
+\OperatorTok{>>>}\NormalTok{ double(}\DecValTok{5}\NormalTok{)}
+    \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+Lambda functions can have any number of arguments but only one
+expression. The expression is evaluated and returned. Lambda functions
+can be used wherever function objects are required.
+
+In the above program, \textbf{lambda x: x * 2} is the
+\texttt{lambda\ function}. Here \textbf{x} is the argument and \textbf{x
+* 2} is the expression that gets evaluated and returned.
+
+This function has no name. It returns a function object which is
+assigned to the identifier \textbf{double}. We can now call it as a
+normal function. The statement
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{double }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ x: x }\OperatorTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+is nearly the same as
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ double(x):}
+    \ControlFlowTok{return}\NormalTok{ x }\OperatorTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{Use of Lambda Function}\label{use-of-lambda-function}
+
+We use lambda functions when we require a nameless function for a short
+period of time.
+
+In Python, we generally use it as an argument to a higher-order function
+(a function that takes in other functions as
+\href{https://www.programiz.com/python-programming/function-argument}{arguments}).
+Lambda functions are used along with built-in functions like
+\texttt{filter()}, \texttt{map()} etc.
+
+\textbf{Example use with filter()}
+
+The \textbf{filter()} function in Python takes in a function and a list
+as arguments.
+
+The function is called with all the items in the list and a new list is
+returned which contains items for which the function evaluats to
+\texttt{True}.
+
+Here is an example use of filter() function to filter out only even
+numbers from a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>} \KeywordTok{def}\NormalTok{ is_odd(x):}
+\OperatorTok{>>>}     \ControlFlowTok{return}\NormalTok{ x }\OperatorTok{%} \DecValTok{2} \OperatorTok{==} \DecValTok{0}
+\OperatorTok{>>>}
+\OperatorTok{>>>}\NormalTok{ my_list }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{12}\NormalTok{]}
+\OperatorTok{>>>}\NormalTok{ new_list }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{filter}\NormalTok{(is_odd, my_list))}
+\NormalTok{    [}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{12}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Instead, we can use lambda function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>}\NormalTok{ my_list }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{12}\NormalTok{]}
+\OperatorTok{>>>}\NormalTok{ new_list }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{filter}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x: x }\OperatorTok{%} \DecValTok{2} \OperatorTok{==} \DecValTok{0}\NormalTok{, my_list))}
+\NormalTok{    [}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{12}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+    \textbf{Example use with map()}
+
+The \textbf{map()} function in Python takes in a function and a list.
+
+The function is called with all the items in the list and a new list is
+returned which contains items returned by that function for each item.
+
+Here is an example use of \textbf{map()} function to double all the
+items in a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>}\NormalTok{ my_list }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{12}\NormalTok{]}
+\OperatorTok{>>>}\NormalTok{ new_list }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x: x }\OperatorTok{**} \DecValTok{2}\NormalTok{ , my_list))}
+\NormalTok{    [}\DecValTok{1}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{36}\NormalTok{, }\DecValTok{64}\NormalTok{, }\DecValTok{121}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{144}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+    \textbf{Example use with Pandas DataFrames}
+
+For example, we have the dataframe:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{from} \PY{n+nn}{StringIO} \PY{k+kn}{import} \PY{n}{StringIO}
+         
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{StringIO}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{col1,col2,col3}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{a,b,1}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{a,b,2}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{c,d,3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{df}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}   col1 col2  col3
+         0    a    b     1
+         1    a    b     2
+         2    c    d     3
+\end{Verbatim}
+        
+    Now, we'll start new \textbf{col3\_double} from \textbf{col3} by apply
+the double function.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{def} \PY{n+nf}{double}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{x} \PY{o}{*} \PY{l+m+mi}{2}
+         
+         \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{col3\PYZus{}double}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{col3}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{double}\PY{p}{)}
+         \PY{n}{df}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:}   col1 col2  col3  col3\_double
+         0    a    b     1            2
+         1    a    b     2            4
+         2    c    d     3            6
+\end{Verbatim}
+        
+    More quickly with \textbf{lambda function} here:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{col3\PYZus{}double}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{col3}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{df}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}   col1 col2  col3  col3\_double
+         0    a    b     1            2
+         1    a    b     2            4
+         2    c    d     3            6
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{df}\PY{o}{.}\PY{n}{col3}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{t}\PY{p}{:} \PY{n}{t} \PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 0    False
+         1    False
+         2     True
+         Name: col3, dtype: bool
+\end{Verbatim}
+        
+    \section{Python Recursion}\label{python-recursion}
+
+Recursion is the process of defining something in terms of itself.
+
+We know that in Python, a function can call other functions. It is even
+possible for the function to call itself. These type of construct are
+termed as recursive functions.
+
+Following is an example of recursive function to find the factorial of
+an integer.
+
+Factorial of a number is the product of all the integers from 1 to that
+number. For example, the factorial of 6 (denoted as 6!) is
+\texttt{1*2*3*4*5*6\ =\ 720}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{def} \PY{n+nf}{calc\PYZus{}factorial}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}This is a recursive function}
+         \PY{l+s+sd}{    to find the factorial of an integer\PYZdq{}\PYZdq{}\PYZdq{}}
+         
+             \PY{k}{if} \PY{n}{x} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                 \PY{k}{return} \PY{l+m+mi}{1}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{p}{(}\PY{n}{x} \PY{o}{*} \PY{n}{calc\PYZus{}factorial}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{num} \PY{o}{=} \PY{l+m+mi}{4}
+         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The factorial of}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{num}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{is}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{calc\PYZus{}factorial}\PY{p}{(}\PY{n}{num}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The factorial of 4 is 24
+
+    \end{Verbatim}
+
+    In the above example, \textbf{calc\_factorial()} is a recursive
+functions as it calls itself.
+
+When we call this function with a positive integer, it will recursively
+call itself by decreasing the number.
+
+Each function call multiples the number with the factorial of number 1
+until the number is equal to one. This recursive call can be explained
+in the following steps.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{calc_factorial(}\DecValTok{4}\NormalTok{)              }\CommentTok{# 1st call with 4}
+\DecValTok{4} \OperatorTok{*}\NormalTok{ calc_factorial(}\DecValTok{3}\NormalTok{)          }\CommentTok{# 2nd call with 3}
+\DecValTok{4} \OperatorTok{*} \DecValTok{3} \OperatorTok{*}\NormalTok{ calc_factorial(}\DecValTok{2}\NormalTok{)      }\CommentTok{# 3rd call with 2}
+\DecValTok{4} \OperatorTok{*} \DecValTok{3} \OperatorTok{*} \DecValTok{2} \OperatorTok{*}\NormalTok{ calc_factorial(}\DecValTok{1}\NormalTok{)  }\CommentTok{# 4th call with 1}
+\DecValTok{4} \OperatorTok{*} \DecValTok{3} \OperatorTok{*} \DecValTok{2} \OperatorTok{*} \DecValTok{1}                  \CommentTok{# return from 4th call as number=1}
+\DecValTok{4} \OperatorTok{*} \DecValTok{3} \OperatorTok{*} \DecValTok{2}                      \CommentTok{# return from 3rd call}
+\DecValTok{4} \OperatorTok{*} \DecValTok{6}                          \CommentTok{# return from 2nd call}
+\DecValTok{24}                             \CommentTok{# return from 1st call}
+\end{Highlighting}
+\end{Shaded}
+
+    Our recursion ends when the number reduces to 1. This is called the base
+condition.
+
+Every recursive function must have a base condition that stops the
+recursion or else the function calls itself infinitely.
+
+\begin{itemize}
+\tightlist
+\item
+  Advantages of recursion
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Recursive functions make the code look clean and elegant.
+  \item
+    A complex task can be broken down into simpler sub-problems using
+    recursion.
+  \item
+    Sequence generation is easier with recursion than using some nested
+    iteration.
+  \end{itemize}
+\item
+  Disadvantages of recursion
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sometimes the logic behind recursion is hard to follow through.
+  \item
+    Recursive calls are expensive (inefficient) as they take up a lot of
+    memory and time.
+  \item
+    Recursive functions are hard to debug.
+  \end{itemize}
+\end{itemize}
+
+    \textbf{Ex1:} Python Program to Display Fibonacci Sequence Using
+Recursion
+
+A Fibonacci sequence is the integer sequence of 0, 1, 1, 2, 3, 5, 8....
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ fibo_recursion(n):}
+    \CommentTok{# your code goes here}
+
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{):}
+    \BuiltInTok{print}\NormalTok{ fibo(i), }
+
+\CommentTok{# Output: 0 1 1 2 3 5 8 13 21 34}
+\end{Highlighting}
+\end{Shaded}
+
+    \textbf{Ex2:} Find Sum of Natural Numbers Using Recursion
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ sum_recursion(n):}
+    \CommentTok{# your code goes here}
+    
+\BuiltInTok{print}\NormalTok{ sum_recursion(}\DecValTok{10}\NormalTok{) }\CommentTok{# Sum of 1 + 2 + 3 + ... + 10}
+
+\CommentTok{# Output: 55}
+\end{Highlighting}
+\end{Shaded}
+
+    \section{Python Errors and Built-in
+Exceptions}\label{python-errors-and-built-in-exceptions}
+
+When writing a program, we, more often than not, will encounter errors.
+
+Error caused by not following the proper structure (syntax) of the
+language is called syntax error or parsing error.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>} \ControlFlowTok{if}\NormalTok{ a }\OperatorTok{<} \DecValTok{3}
+\NormalTok{  File }\StringTok{"<interactive input>"}\NormalTok{, line }\DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ a }\OperatorTok{<} \DecValTok{3}
+           \OperatorTok{^}
+\PreprocessorTok{SyntaxError}\NormalTok{: invalid syntax}
+\end{Highlighting}
+\end{Shaded}
+
+We can notice here that a colon is missing in the if statement.
+
+Errors can also occur at runtime and these are called exceptions. They
+occur, for example, when a file we try to open does not exist
+(\texttt{FileNotFoundError}), dividing a number by zero
+(\texttt{ZeroDivisionError}), module we try to import is not found
+(\texttt{ImportError}) etc.
+
+Different kinds of errors can occur in a program, and it is useful to
+distinguish among them in order to track them down more quickly:
+
+\begin{itemize}
+\tightlist
+\item
+  Syntax errors are produced by Python when it is translating the source
+  code into byte code. They usually indicate that there is something
+  wrong with the syntax of the program. Example: Omitting the colon at
+  the end of a def statement yields the somewhat redundant message
+  SyntaxError: invalid syntax.
+\item
+  Runtime errors are produced by the runtime system if something goes
+  wrong while the program is running. Most runtime error messages
+  include information about where the error occurred and what functions
+  were executing. Example: An infinite recursion eventually causes a
+  runtime error of "maximum recursion depth exceeded."
+\item
+  Semantic errors are problems with a program that compiles and runs but
+  doesn't do the right thing. Example: An expression may not be
+  evaluated in the order you expect, yielding an unexpected result.
+\end{itemize}
+
+The first step in debugging is to figure out which kind of error you are
+dealing with. Although the following sections are organized by error
+type, some techniques are applicable in more than one situation.
+
+    Python Built-in Exceptions:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.15\columnwidth}\raggedright\strut
+Exception\strut
+\end{minipage} & \begin{minipage}[b]{0.79\columnwidth}\raggedright\strut
+Cause of Error\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+AssertionError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when assert statement fails.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+AttributeError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when attribute assignment or reference fails.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+EOFError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when the input() functions hits end-of-file condition.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+FloatingPointError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a floating point operation fails.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+GeneratorExit\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raise when a generator's close() method is called.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+ImportError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when the imported module is not found.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+IndexError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when index of a sequence is out of range.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+KeyError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a key is not found in a dictionary.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+KeyboardInterrupt\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when the user hits interrupt key (Ctrl+c or delete).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+MemoryError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when an operation runs out of memory.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+NameError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a variable is not found in local or global scope.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+NotImplementedError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised by abstract methods.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+OSError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when system operation causes system related error.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+OverflowError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when result of an arithmetic operation is too large to be
+represented.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+ReferenceError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a weak reference proxy is used to access a garbage collected
+referent.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+RuntimeError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when an error does not fall under any other category.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+StopIteration\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised by next() function to indicate that there is no further item to
+be returned by iterator.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+SyntaxError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised by parser when syntax error is encountered.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+IndentationError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when there is incorrect indentation.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+TabError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when indentation consists of inconsistent tabs and spaces.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+SystemError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when interpreter detects internal error.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+SystemExit\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised by sys.exit() function.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+TypeError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a function or operation is applied to an object of incorrect
+type.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+UnboundLocalError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a reference is made to a local variable in a function or
+method, but no value has been bound to that variable.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+UnicodeError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a Unicode-related encoding or decoding error occurs.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+UnicodeEncodeError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a Unicode-related error occurs during encoding.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+UnicodeDecodeError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a Unicode-related error occurs during decoding.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+UnicodeTranslateError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a Unicode-related error occurs during translating.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+ValueError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when a function gets argument of correct type but improper
+value.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+ZeroDivisionError\strut
+\end{minipage} & \begin{minipage}[t]{0.79\columnwidth}\raggedright\strut
+Raised when second operand of division or modulo operation is
+zero.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \subsection{Syntax errors}\label{syntax-errors}
+
+Syntax errors are usually easy to fix once you figure out what they are.
+Unfortunately, the error messages are often not helpful. The most common
+messages are \textbf{SyntaxError: invalid syntax} and
+\textbf{SyntaxError: invalid token}, neither of which is very
+informative.
+
+On the other hand, the message does tell you where in the program the
+problem occurred. Actually, it tells you where Python noticed a problem,
+which is not necessarily where the error is. Sometimes the error is
+prior to the location of the error message, often on the preceding line.
+
+If you are building the program incrementally, you should have a good
+idea about where the error is. It will be in the last line you added.
+
+If you are copying code from a book, start by comparing your code to the
+book's code very carefully. Check every character. At the same time,
+remember that the book might be wrong, so if you see something that
+looks like a syntax error, it might be.
+
+Here are some ways to avoid the most common syntax errors:
+
+\begin{itemize}
+\tightlist
+\item
+  Make sure you are not using a Python keyword for a variable name.
+\item
+  Check that you have a colon at the end of the header of every compound
+  statement, including for, while, if, and def statements.
+\item
+  Check that indentation is consistent. You may indent with either
+  spaces or tabs but it's best not to mix them. Each level should be
+  nested the same amount.
+\item
+  Make sure that any strings in the code have matching quotation marks.
+\item
+  If you have multiline strings with triple quotes (single or double),
+  make sure you have terminated the string properly. An unterminated
+  string may cause an invalid token error at the end of your program, or
+  it may treat the following part of the program as a string until it
+  comes to the next string. In the second case, it might not produce an
+  error message at all!
+\item
+  An unclosed bracket (, \{, or {[} makes Python continue with the next
+  line as part of the current statement. Generally, an error occurs
+  almost immediately in the next line.
+\item
+  Check for the classic = instead of == inside a conditional.
+\end{itemize}
+
+If nothing works, move on to the next section...
+
+    \subsection{Runtime errors}\label{runtime-errors}
+
+Once your program is syntactically correct, Python can import it and at
+least start running it. What could possibly go wrong?
+
+\subsubsection{My program hangs.}\label{my-program-hangs.}
+
+If a program stops and seems to be doing nothing, we say it is
+"hanging." Often that means that it is caught in an infinite loop or an
+infinite recursion.
+
+\begin{itemize}
+\tightlist
+\item
+  If there is a particular loop that you suspect is the problem, add a
+  print statement immediately before the loop that says "entering the
+  loop" and another immediately after that says "exiting the loop."
+\item
+  Run the program. If you get the first message and not the second,
+  you've got an infinite loop. Go to the "Infinite Loop" section below.
+\item
+  Most of the time, an infinite recursion will cause the program to run
+  for a while and then produce a "RuntimeError: Maximum recursion depth
+  exceeded" error. If that happens, go to the "Infinite Recursion"
+  section below.
+\item
+  If you are not getting this error but you suspect there is a problem
+  with a recursive method or function, you can still use the techniques
+  in the "Infinite Recursion" section.
+\item
+  If neither of those steps works, start testing other loops and other
+  recursive functions and methods.
+\end{itemize}
+
+    \subsubsection{Infinite Loop}\label{infinite-loop}
+
+If you think you have an infinite loop and you think you know what loop
+is causing the problem, add a \texttt{print} statement at the end of the
+loop that prints the values of the variables in the condition and the
+value of the condition.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{while}\NormalTok{ x }\OperatorTok{>} \DecValTok{0} \KeywordTok{and}\NormalTok{ y }\OperatorTok{<} \DecValTok{0}\NormalTok{ : }
+  \CommentTok{# do something to x }
+  \CommentTok{# do something to y }
+
+  \BuiltInTok{print}  \StringTok{"x: "}\NormalTok{, x }
+  \BuiltInTok{print}  \StringTok{"y: "}\NormalTok{, y }
+  \BuiltInTok{print}  \StringTok{"condition: "}\NormalTok{, (x }\OperatorTok{>} \DecValTok{0} \KeywordTok{and}\NormalTok{ y }\OperatorTok{<} \DecValTok{0}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+Now when you run the program, you will see three lines of output for
+each time through the loop. The last time through the loop, the
+condition should be false. If the loop keeps going, you will be able to
+see the values of x and y, and you might figure out why they are not
+being updated correctly.
+
+\subsubsection{Infinite Recursion}\label{infinite-recursion}
+
+Most of the time, an infinite recursion will cause the program to run
+for a while and then produce a Maximum recursion depth exceeded error.
+
+\subsubsection{Flow of Execution}\label{flow-of-execution}
+
+If you are not sure how the flow of execution is moving through your
+program, add print statements to the beginning of each function with a
+message like "entering function foo," where foo is the name of the
+function.
+
+Now when you run the program, it will print a trace of each function as
+it is invoked.
+
+    \section{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  http://www.greenteapress.com/thinkpython/thinkCSpy/html/app01.html
+\item
+  http://www.python-course.eu/python3\_lambda.php
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
