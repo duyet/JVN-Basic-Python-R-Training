@@ -1,0 +1,1402 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{100-pandas-puzzles-with-solutions}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{100 pandas puzzles}\label{pandas-puzzles}
+
+Inspired by \href{https://github.com/rougier/numpy-100}{100 Numpy
+exerises}, here are 100* short puzzles for testing your knowledge of
+\href{http://pandas.pydata.org/}{pandas'} power.
+
+Since pandas is a large library with many different specialist features
+and functions, these excercises focus mainly on the fundamentals of
+manipulating data (indexing, grouping, aggregating, cleaning), making
+use of the core DataFrame and Series objects.
+
+Many of the excerises here are stright-forward in that the solutions
+require no more than a few lines of code (in pandas or NumPy... don't go
+using pure Python or Cython!). Choosing the right methods and following
+best practices is the underlying goal.
+
+The exercises are loosely divided in sections. Each section has a
+difficulty rating; these ratings are subjective, of course, but should
+be a seen as a rough guide as to how inventive the required solution is.
+
+If you're just starting out with pandas and you are looking for some
+other resources, the official documentation is very extensive. In
+particular, some good places get a broader overview of pandas are...
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://pandas.pydata.org/pandas-docs/stable/10min.html}{10
+  minutes to pandas}
+\item
+  \href{http://pandas.pydata.org/pandas-docs/stable/basics.html}{pandas
+  basics}
+\item
+  \href{http://pandas.pydata.org/pandas-docs/stable/tutorials.html}{tutorials}
+\item
+  \href{http://pandas.pydata.org/pandas-docs/stable/cookbook.html\#cookbook}{cookbook
+  and idioms}
+\end{itemize}
+
+Enjoy the puzzles!
+
+* \emph{the list of exercises is not yet complete! Pull requests or
+suggestions for additional exercises, corrections and improvements are
+welcomed.}
+
+    \subsection{Importing pandas}\label{importing-pandas}
+
+\subsubsection{Getting started and checking your pandas
+setup}\label{getting-started-and-checking-your-pandas-setup}
+
+Difficulty: \emph{easy}
+
+\textbf{1.} Import pandas under the name \texttt{pd}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \textbf{2.} Print the version of pandas that has been imported.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{pd}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}version\PYZus{}\PYZus{}}
+\end{Verbatim}
+
+
+    \textbf{3.} Print out all the version information of the libraries that
+are required by the pandas library.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{pd}\PY{o}{.}\PY{n}{show\PYZus{}versions}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{DataFrame basics}\label{dataframe-basics}
+
+\subsubsection{A few of the fundamental routines for selecting, sorting,
+adding and aggregating data in
+DataFrames}\label{a-few-of-the-fundamental-routines-for-selecting-sorting-adding-and-aggregating-data-in-dataframes}
+
+Difficulty: \emph{easy}
+
+Note: remember to import numpy using:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\end{Highlighting}
+\end{Shaded}
+
+Consider the following Python dictionary \texttt{data} and Python list
+\texttt{labels}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OperatorTok{=}\NormalTok{ \{}\StringTok{'animal'}\NormalTok{: [}\StringTok{'cat'}\NormalTok{, }\StringTok{'cat'}\NormalTok{, }\StringTok{'snake'}\NormalTok{, }\StringTok{'dog'}\NormalTok{, }\StringTok{'dog'}\NormalTok{, }\StringTok{'cat'}\NormalTok{, }\StringTok{'snake'}\NormalTok{, }\StringTok{'cat'}\NormalTok{, }\StringTok{'dog'}\NormalTok{, }\StringTok{'dog'}\NormalTok{],}
+        \StringTok{'age'}\NormalTok{: [}\FloatTok{2.5}\NormalTok{, }\DecValTok{3}\NormalTok{, }\FloatTok{0.5}\NormalTok{, np.nan, }\DecValTok{5}\NormalTok{, }\DecValTok{2}\NormalTok{, }\FloatTok{4.5}\NormalTok{, np.nan, }\DecValTok{7}\NormalTok{, }\DecValTok{3}\NormalTok{],}
+        \StringTok{'visits'}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{],}
+        \StringTok{'priority'}\NormalTok{: [}\StringTok{'yes'}\NormalTok{, }\StringTok{'yes'}\NormalTok{, }\StringTok{'no'}\NormalTok{, }\StringTok{'yes'}\NormalTok{, }\StringTok{'no'}\NormalTok{, }\StringTok{'no'}\NormalTok{, }\StringTok{'no'}\NormalTok{, }\StringTok{'yes'}\NormalTok{, }\StringTok{'no'}\NormalTok{, }\StringTok{'no'}\NormalTok{]\}}
+
+\NormalTok{labels }\OperatorTok{=}\NormalTok{ [}\StringTok{'a'}\NormalTok{, }\StringTok{'b'}\NormalTok{, }\StringTok{'c'}\NormalTok{, }\StringTok{'d'}\NormalTok{, }\StringTok{'e'}\NormalTok{, }\StringTok{'f'}\NormalTok{, }\StringTok{'g'}\NormalTok{, }\StringTok{'h'}\NormalTok{, }\StringTok{'i'}\NormalTok{, }\StringTok{'j'}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+(This is just some meaningless data I made up with the theme of animals
+and trips to a vet.)
+
+\textbf{4.} Create a DataFrame \texttt{df} from this dictionary
+\texttt{data} which has the index \texttt{labels}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{labels}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{5.} Display a summary of the basic information about this
+DataFrame and its data.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} ...or...}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{6.} Return the first 3 rows of the DataFrame \texttt{df}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} or equivalently}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{7.} Select just the 'animal' and 'age' columns from the
+DataFrame \texttt{df}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} or}
+        
+        \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{8.} Select the data in rows \texttt{{[}3,\ 4,\ 8{]}} \emph{and}
+in columns
+\texttt{{[}\textquotesingle{}animal\textquotesingle{},\ \textquotesingle{}age\textquotesingle{}{]}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{9.} Select only the rows where the number of visits is greater
+than 3.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{visits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{10.} Select the rows where the age is missing, i.e. is
+\texttt{NaN}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{11.} Select the rows where the animal is a cat \emph{and} the
+age is less than 3.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{12.} Select the rows the age is between 2 and 4 (inclusive).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{between}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{13.} Change the age in row 'f' to 1.5.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{f}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.5}
+\end{Verbatim}
+
+
+    \textbf{14.} Calculate the sum of all visits (the total number of
+visits).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{visits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{15.} Calculate the mean age for each different animal in
+\texttt{df}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{16.} Append a new row 'k' to \texttt{df} with your choice of
+values for each column. Then delete that row to return the original
+DataFrame.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{5.5}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{no}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} and then deleting the new row...}
+        
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{17.} Count the number of each type of animal in \texttt{df}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{18.} Sort \texttt{df} first by the values in the 'age' in
+\emph{decending} order, then by the value in the 'visit' column in
+\emph{ascending} order.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{visits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{,} \PY{k+kc}{True}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{19.} The 'priority' column contains the values 'yes' and 'no'.
+Replace this column with a column of boolean values: 'yes' should be
+\texttt{True} and 'no' should be \texttt{False}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{priority}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{priority}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{True}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{no}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{False}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{20.} In the 'animal' column, change the 'snake' entries to
+'python'.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{snake}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{python}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{21.} For each animal type and each number of visits, find the
+mean age. In other words, each row is an animal, each column is a number
+of visits and the values are the mean ages (hint: use a pivot table).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{pivot\PYZus{}table}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{visits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{values}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{aggfunc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{DataFrames: beyond the
+basics}\label{dataframes-beyond-the-basics}
+
+\subsubsection{Slightly trickier: you may need to combine two or more
+methods to get the right
+answer}\label{slightly-trickier-you-may-need-to-combine-two-or-more-methods-to-get-the-right-answer}
+
+Difficulty: \emph{medium}
+
+The previous section was tour through some basic but essential DataFrame
+operations. Below are some ways that you might need to cut your data,
+but for which there is no single "out of the box" method.
+
+    \textbf{22.} You have a DataFrame \texttt{df} with a column 'A' of
+integers. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{'A'}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{7}\NormalTok{]\})}
+\end{Highlighting}
+\end{Shaded}
+
+How do you filter out rows which contain the same integer as the row
+immediately above?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{p}{)} \PY{o}{!=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{23.} Given a DataFrame of numeric values, say
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(np.random.random(size}\OperatorTok{=}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{))) }\CommentTok{# a 5x3 frame of float values}
+\end{Highlighting}
+\end{Shaded}
+
+how do you subtract the row mean from each element in the row?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{sub}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{24.} Suppose you have DataFrame with 10 columns of real numbers,
+for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(np.random.random(size}\OperatorTok{=}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)), columns}\OperatorTok{=}\BuiltInTok{list}\NormalTok{(}\StringTok{'abcdefghij'}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Which column of numbers has the smallest sum? (Find that column's
+label.)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{idxmin}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{25.} How do you count how many unique rows a DataFrame has (i.e.
+ignore all rows that are duplicates)?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} or perhaps more simply...}
+        
+        \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    The next three puzzles are slightly harder...
+
+\textbf{26.} You have a DataFrame that consists of 10 columns of
+floating-\/-point numbers. Suppose that exactly 5 entries in each row
+are NaN values. For each row of the DataFrame, find the \emph{column}
+which contains the \emph{third} NaN value.
+
+(You should return a Series of column labels.)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{)}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{27.} A DataFrame has a column of groups 'grps' and and column of
+numbers 'vals'. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{'grps'}\NormalTok{: }\BuiltInTok{list}\NormalTok{(}\StringTok{'aaabbcaabcccbbc'}\NormalTok{), }
+                   \StringTok{'vals'}\NormalTok{: [}\DecValTok{12}\NormalTok{,}\DecValTok{345}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{45}\NormalTok{,}\DecValTok{14}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{52}\NormalTok{,}\DecValTok{54}\NormalTok{,}\DecValTok{23}\NormalTok{,}\DecValTok{235}\NormalTok{,}\DecValTok{21}\NormalTok{,}\DecValTok{57}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{87}\NormalTok{]\})}
+\end{Highlighting}
+\end{Shaded}
+
+For each \emph{group}, find the sum of the three greatest values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vals}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{nlargest}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{level}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{28.} A DataFrame has two integer columns 'A' and 'B'. The values
+in 'A' are between 1 and 100 (inclusive). For each group of 10
+consecutive integers in 'A' (i.e. \texttt{(0,\ 10{]}},
+\texttt{(10,\ 20{]}}, ...), calculate the sum of the corresponding
+values in column 'B'.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{cut}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{DataFrames: harder
+problems}\label{dataframes-harder-problems}
+
+\subsubsection{These might require a bit of thinking outside the
+box...}\label{these-might-require-a-bit-of-thinking-outside-the-box...}
+
+...but all are solvable using just the usual pandas/NumPy methods (and
+so avoid using explicit \texttt{for} loops).
+
+Difficulty: \emph{hard}
+
+    \textbf{29.} Consider a DataFrame \texttt{df} where there is an integer
+column 'X':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{'X'}\NormalTok{: [}\DecValTok{7}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{]\})}
+\end{Highlighting}
+\end{Shaded}
+
+For each value, count the difference back to the previous zero (or the
+start of the Series, whichever is closer). These values should therefore
+be \texttt{{[}1,\ 2,\ 0,\ 1,\ 2,\ 3,\ 4,\ 0,\ 1,\ 2{]}}. Make this a new
+column 'Y'.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{izero} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{r\PYZus{}}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{nonzero}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]} \PY{c+c1}{\PYZsh{} indices of zeros}
+        \PY{n}{idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{)}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{idx} \PY{o}{\PYZhy{}} \PY{n}{izero}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{searchsorted}\PY{p}{(}\PY{n}{izero} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} http://stackoverflow.com/questions/30730981/how\PYZhy{}to\PYZhy{}count\PYZhy{}distance\PYZhy{}to\PYZhy{}the\PYZhy{}previous\PYZhy{}zero\PYZhy{}in\PYZhy{}pandas\PYZhy{}series/}
+        \PY{c+c1}{\PYZsh{} credit: Behzad Nouri}
+\end{Verbatim}
+
+
+    Here's an alternative approach based on a
+\href{http://pandas.pydata.org/pandas-docs/stable/cookbook.html\#grouping}{cookbook
+recipe}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{x} \PY{o}{=} \PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{n}{x} \PY{o}{!=} \PY{n}{x}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{y}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{(}\PY{n}{y} \PY{o}{!=} \PY{n}{y}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    And another approach using a groupby:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{cumcount}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} We\PYZsq{}re off by one before we reach the first zero.}
+        \PY{n}{first\PYZus{}zero\PYZus{}idx} \PY{o}{=} \PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{first\PYZus{}zero\PYZus{}idx}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \textbf{30.} Consider a DataFrame containing rows and columns of purely
+numerical data. Create a list of the row-column index locations of the 3
+largest values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} http://stackoverflow.com/questions/14941261/index\PYZhy{}and\PYZhy{}column\PYZhy{}for\PYZhy{}the\PYZhy{}max\PYZhy{}value\PYZhy{}in\PYZhy{}pandas\PYZhy{}dataframe/}
+        \PY{c+c1}{\PYZsh{} credit: DSM}
+\end{Verbatim}
+
+
+    \textbf{31.} Given a DataFrame with a column of group IDs, 'grps', and a
+column of corresponding integer values, 'vals', replace any negative
+values in 'vals' with the group mean.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{def} \PY{n+nf}{replace}\PY{p}{(}\PY{n}{group}\PY{p}{)}\PY{p}{:}
+            \PY{n}{mask} \PY{o}{=} \PY{n}{group}\PY{o}{\PYZlt{}}\PY{l+m+mi}{0}
+            \PY{n}{group}\PY{p}{[}\PY{n}{mask}\PY{p}{]} \PY{o}{=} \PY{n}{group}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{mask}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+            \PY{k}{return} \PY{n}{group}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vals}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{replace}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} http://stackoverflow.com/questions/14760757/replacing\PYZhy{}values\PYZhy{}with\PYZhy{}groupby\PYZhy{}means/}
+        \PY{c+c1}{\PYZsh{} credit: unutbu}
+\end{Verbatim}
+
+
+    \textbf{32.} Implement a rolling mean over groups with window size 3,
+which ignores NaN value. For example consider the following DataFrame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>>>}\NormalTok{ df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{'group'}\NormalTok{: }\BuiltInTok{list}\NormalTok{(}\StringTok{'aabbabbbabab'}\NormalTok{),}
+                       \StringTok{'value'}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, np.nan, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }
+\NormalTok{                                 np.nan, }\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{3}\NormalTok{, np.nan, }\DecValTok{8}\NormalTok{]\})}
+\OperatorTok{>>>}\NormalTok{ df}
+\NormalTok{   group  value}
+\DecValTok{0}\NormalTok{      a    }\FloatTok{1.0}
+\DecValTok{1}\NormalTok{      a    }\FloatTok{2.0}
+\DecValTok{2}\NormalTok{      b    }\FloatTok{3.0}
+\DecValTok{3}\NormalTok{      b    NaN}
+\DecValTok{4}\NormalTok{      a    }\FloatTok{2.0}
+\DecValTok{5}\NormalTok{      b    }\FloatTok{3.0}
+\DecValTok{6}\NormalTok{      b    NaN}
+\DecValTok{7}\NormalTok{      b    }\FloatTok{1.0}
+\DecValTok{8}\NormalTok{      a    }\FloatTok{7.0}
+\DecValTok{9}\NormalTok{      b    }\FloatTok{3.0}
+\DecValTok{10}\NormalTok{     a    NaN}
+\DecValTok{11}\NormalTok{     b    }\FloatTok{8.0}
+\end{Highlighting}
+\end{Shaded}
+
+The goal is to compute the Series:
+
+\begin{verbatim}
+0     1.000000
+1     1.500000
+2     3.000000
+3     3.000000
+4     1.666667
+5     3.000000
+6     3.000000
+7     2.000000
+8     3.666667
+9     2.000000
+10    4.500000
+11    4.000000
+\end{verbatim}
+
+E.g. the first window of size three for group 'b' has values 3.0, NaN
+and 3.0 and occurs at row index 5. Instead of being NaN the value in the
+new column at this row index should be 3.0 (just the two non-NaN values
+are used to compute the mean (3+3)/2)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{g1} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{group}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}              \PY{c+c1}{\PYZsh{} group values  }
+        \PY{n}{g2} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{group}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}    \PY{c+c1}{\PYZsh{} fillna, then group values}
+        
+        \PY{n}{s} \PY{o}{=} \PY{n}{g2}\PY{o}{.}\PY{n}{rolling}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{min\PYZus{}periods}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)} \PY{o}{/} \PY{n}{g1}\PY{o}{.}\PY{n}{rolling}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{min\PYZus{}periods}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} compute means}
+        
+        \PY{n}{s}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{level}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{p}{)}  \PY{c+c1}{\PYZsh{} drop/sort index}
+        
+        \PY{c+c1}{\PYZsh{} http://stackoverflow.com/questions/36988123/pandas\PYZhy{}groupby\PYZhy{}and\PYZhy{}rolling\PYZhy{}apply\PYZhy{}ignoring\PYZhy{}nans/}
+\end{Verbatim}
+
+
+    \subsection{Series and DatetimeIndex}\label{series-and-datetimeindex}
+
+\subsubsection{Exercises for creating and manipulating Series with
+datetime
+data}\label{exercises-for-creating-and-manipulating-series-with-datetime-data}
+
+Difficulty: \emph{easy/medium}
+
+pandas is fantastic for working with dates and times. These puzzles
+explore some of this functionality.
+
+    \textbf{33.} Create a DatetimeIndex that contains each business day of
+2015 and use it to index a Series of random numbers. Let's call this
+Series \texttt{s}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{dti} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2015\PYZhy{}01\PYZhy{}01}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2015\PYZhy{}12\PYZhy{}31}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        \PY{n}{s} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dti}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{dti}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{34.} Find the sum of the values in \texttt{s} for every
+Wednesday.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{p}{[}\PY{n}{s}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{weekday} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \textbf{35.} For each calendar month in \texttt{s}, find the mean of
+values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{36.} For each group of four consecutive calendar months in
+\texttt{s}, find the date on which the highest value occurred.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{TimeGrouper}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{4M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{idxmax}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{37.} Create a DateTimeIndex consisting of the third Thursday in
+each month for the years 2015 and 2016.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2015\PYZhy{}01\PYZhy{}01}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2016\PYZhy{}12\PYZhy{}31}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WOM\PYZhy{}3THU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Cleaning Data}\label{cleaning-data}
+
+\subsubsection{Making a DataFrame easier to work
+with}\label{making-a-dataframe-easier-to-work-with}
+
+Difficulty: \emph{easy/medium}
+
+It happens all the time: someone gives you data containing malformed
+strings, Python, lists and missing data. How do you tidy it up so you
+can get on with the analysis?
+
+Take this monstrosity as the DataFrame to use in the following puzzles:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{'From_To'}\NormalTok{: [}\StringTok{'LoNDon_paris'}\NormalTok{, }\StringTok{'MAdrid_miLAN'}\NormalTok{, }\StringTok{'londON_StockhOlm'}\NormalTok{, }
+                               \StringTok{'Budapest_PaRis'}\NormalTok{, }\StringTok{'Brussels_londOn'}\NormalTok{],}
+              \StringTok{'FlightNumber'}\NormalTok{: [}\DecValTok{10045}\NormalTok{, np.nan, }\DecValTok{10065}\NormalTok{, np.nan, }\DecValTok{10085}\NormalTok{],}
+              \StringTok{'RecentDelays'}\NormalTok{: [[}\DecValTok{23}\NormalTok{, }\DecValTok{47}\NormalTok{], [], [}\DecValTok{24}\NormalTok{, }\DecValTok{43}\NormalTok{, }\DecValTok{87}\NormalTok{], [}\DecValTok{13}\NormalTok{], [}\DecValTok{67}\NormalTok{, }\DecValTok{32}\NormalTok{]],}
+                   \StringTok{'Airline'}\NormalTok{: [}\StringTok{'KLM(!)'}\NormalTok{, }\StringTok{'<Air France> (12)'}\NormalTok{, }\StringTok{'(British Airways. )'}\NormalTok{, }
+                               \StringTok{'12. Air France'}\NormalTok{, }\StringTok{'"Swiss Air"'}\NormalTok{]\})}
+\end{Highlighting}
+\end{Shaded}
+
+(It's some flight data I made up; it's not meant to be accurate in any
+way.)
+
+    \textbf{38.} Some values in the the FlightNumber column are missing.
+These numbers are meant to increase by 10 with each row so 10055 and
+10075 need to be put in place. Fill in these missing numbers and make
+the column an integer column (instead of a float column).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FlightNumber}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FlightNumber}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{interpolate}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{39.} The From\_To column would be better as two separate
+columns! Split each string on the underscore delimiter \texttt{\_} to
+give a new temporary DataFrame with the correct values. Assign the
+correct column names to this temporary DataFrame.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{temp} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{From\PYZus{}To}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{expand}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{temp}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{From}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{To}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{40.} Notice how the capitalisation of the city names is all
+mixed up in this temporary DataFrame. Standardise the strings so that
+only the first letter is uppercase (e.g. "londON" should become
+"London".)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{From}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{From}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}
+        \PY{n}{temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{To}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{To}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{41.} Delete the From\_To column from \texttt{df} and attach the
+temporary DataFrame from the previous questions.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{From\PYZus{}To}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{temp}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{42}. In the Airline column, you can see some extra puctuation
+and symbols have appeared around the airline names. Pull out just the
+airline name. E.g.
+\texttt{\textquotesingle{}(British\ Airways.\ )\textquotesingle{}}
+should become
+\texttt{\textquotesingle{}British\ Airways\textquotesingle{}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Airline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Airline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{extract}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{([a\PYZhy{}zA\PYZhy{}Z}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{s]+)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{expand}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} note: using .strip() gets rid of any leading/trailing spaces}
+\end{Verbatim}
+
+
+    \textbf{43}. In the RecentDelays column, the values have been entered
+into the DataFrame as a list. We would like each first value in its own
+column, each second value in its own column, and so on. If there isn't
+an Nth value, the value should be NaN.
+
+Expand the Series of lists into a DataFrame named \texttt{delays},
+rename the columns \texttt{delay\_1}, \texttt{delay\_2}, etc. and
+replace the unwanted RecentDelays column in \texttt{df} with
+\texttt{delays}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} there are several ways to do this, but the following approach is possibly the simplest}
+        
+        \PY{n}{delays} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RecentDelays}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{)}
+        
+        \PY{n}{delays}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{delay\PYZus{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{delays}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+        
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RecentDelays}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{delays}\PY{p}{)}
+\end{Verbatim}
+
+
+    The DataFrame should look much better now.
+
+    \subsection{Using MultiIndexes}\label{using-multiindexes}
+
+\subsubsection{Go beyond flat DataFrames with additional index
+levels}\label{go-beyond-flat-dataframes-with-additional-index-levels}
+
+Difficulty: \emph{medium}
+
+Previous exercises have seen us analysing data from DataFrames equipped
+with a single index level. However, pandas also gives you the possibilty
+of indexing your data using \emph{multiple} levels. This is very much
+like adding new dimensions to a Series or a DataFrame. For example, a
+Series is 1D, but by using a MultiIndex with 2 levels we gain of much
+the same functionality as a 2D DataFrame.
+
+The set of puzzles below explores how you might use multiple index
+levels to enhance data analysis.
+
+To warm up, we'll look make a Series with two index levels.
+
+    \textbf{44}. Given the lists
+\texttt{letters\ =\ {[}\textquotesingle{}A\textquotesingle{},\ \textquotesingle{}B\textquotesingle{},\ \textquotesingle{}C\textquotesingle{}{]}}
+and \texttt{numbers\ =\ list(range(10))}, construct a MultiIndex object
+from the product of the two lists. Use it to index a Series of random
+numbers. Call this Series \texttt{s}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{letters} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{numbers} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{mi} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{MultiIndex}\PY{o}{.}\PY{n}{from\PYZus{}product}\PY{p}{(}\PY{p}{[}\PY{n}{letters}\PY{p}{,} \PY{n}{numbers}\PY{p}{]}\PY{p}{)}
+        \PY{n}{s} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{mi}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{45.} Check the index of \texttt{s} is lexicographically sorted
+(this is a necessary proprty for indexing to work correctly with a
+MultiIndex).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{is\PYZus{}lexsorted}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} or more verbosely...}
+        \PY{n}{s}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{lexsort\PYZus{}depth} \PY{o}{==} \PY{n}{s}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{nlevels}
+\end{Verbatim}
+
+
+    \textbf{46}. Select the labels \texttt{1}, \texttt{3} and \texttt{6}
+from the second level of the MultiIndexed Series.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{47}. Slice the Series \texttt{s}; slice up to label 'B' for the
+first level and from label 5 onwards for the second level.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{pd}\PY{o}{.}\PY{n}{IndexSlice}\PY{p}{[}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{:}\PY{p}{]}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} or equivalently without IndexSlice...}
+        \PY{n}{s}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n+nb}{slice}\PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n+nb}{slice}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \textbf{48}. Sum the values in \texttt{s} for each label in the first
+level (you should have Series giving you a total for labels A, B and C).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{s}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{level}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{49}. Suppose that \texttt{sum()} (and other methods) did not
+accept a \texttt{level} keyword argument. How else could you perform the
+equivalent of \texttt{s.sum(level=1)}?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} One way is to use .unstack()... }
+        \PY{c+c1}{\PYZsh{} This method should convince you that s is essentially }
+        \PY{c+c1}{\PYZsh{} just a regular DataFrame in disguise!}
+        \PY{n}{s}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{50}. Exchange the levels of the MultiIndex so we have an index
+of the form (letters, numbers). Is this new Series properly lexsorted?
+If not, sort it.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{new\PYZus{}s} \PY{o}{=} \PY{n}{s}\PY{o}{.}\PY{n}{swaplevel}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} check}
+        \PY{n}{new\PYZus{}s}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{is\PYZus{}lexsorted}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} sort}
+        \PY{n}{new\PYZus{}s} \PY{o}{=} \PY{n}{new\PYZus{}s}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Minesweeper}\label{minesweeper}
+
+\subsubsection{Generate the numbers for safe squares in a Minesweeper
+grid}\label{generate-the-numbers-for-safe-squares-in-a-minesweeper-grid}
+
+Difficulty: \emph{medium} to \emph{hard}
+
+If you've ever used an older version of Windows, there's a good chance
+you've played with
+Section \ref{minesweeper}(https://en.wikipedia.org/wiki/Minesweeper\_(video\_game).
+If you're not familiar with the game, imagine a grid of squares: some of
+these squares conceal a mine. If you click on a mine, you lose
+instantly. If you click on a safe square, you reveal a number telling
+you how many mines are found in the squares that are immediately
+adjacent. The aim of the game is to uncover all squares in the grid that
+do not contain a mine.
+
+In this section, we'll make a DataFrame that contains the necessary data
+for a game of Minesweeper: coordinates of the squares, whether the
+square contains a mine and the number of mines found on adjacent
+squares.
+
+    \textbf{51}. Let's suppose we're playing Minesweeper on a 5 by 4 grid,
+i.e.
+
+\begin{verbatim}
+X = 5
+Y = 4
+\end{verbatim}
+
+To begin, generate a DataFrame \texttt{df} with two columns,
+\texttt{\textquotesingle{}x\textquotesingle{}} and
+\texttt{\textquotesingle{}y\textquotesingle{}} containing every
+coordinate for this grid. That is, the DataFrame should start:
+
+\begin{verbatim}
+   x  y
+0  0  0
+1  0  1
+2  0  2
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{p} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{tools}\PY{o}{.}\PY{n}{util}\PY{o}{.}\PY{n}{cartesian\PYZus{}product}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{Y}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{52}. For this DataFrame \texttt{df}, create a new column of
+zeros (safe) and ones (mine). The probability of a mine occuring at each
+location should be 0.4.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} One way is to draw samples from a binomial distribution.}
+        
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{binomial}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{n}{X}\PY{o}{*}\PY{n}{Y}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{53}. Now create a new column for this DataFrame called
+\texttt{\textquotesingle{}adjacent\textquotesingle{}}. This column
+should contain the number of mines found on adjacent squares in the
+grid.
+
+(E.g. for the first row, which is the entry for the coordinate
+\texttt{(0,\ 0)}, count how many mines are found on the coordinates
+\texttt{(0,\ 1)}, \texttt{(1,\ 0)} and \texttt{(1,\ 1)}.)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Here is one way to solve using merges.}
+        \PY{c+c1}{\PYZsh{} It\PYZsq{}s not necessary the optimal way, just }
+        \PY{c+c1}{\PYZsh{} the solution I thought of first...}
+        
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{adjacent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PYZbs{}
+            \PY{n}{df}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[} \PY{l+m+mi}{1}\PY{p}{,}  \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}  \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[} \PY{l+m+mi}{1}\PY{p}{,}  \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}  \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[} \PY{l+m+mi}{0}\PY{p}{,}  \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df} \PY{o}{+} \PY{p}{[} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PYZbs{}
+               \PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PYZbs{}
+                \PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                
+        \PY{c+c1}{\PYZsh{} An alternative solution is to pivot the DataFrame }
+        \PY{c+c1}{\PYZsh{} to form the \PYZdq{}actual\PYZdq{} grid of mines and use convolution.}
+        \PY{c+c1}{\PYZsh{} See https://github.com/jakevdp/matplotlib\PYZus{}pydata2013/blob/master/examples/minesweeper.py}
+        
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{signal} \PY{k}{import} \PY{n}{convolve2d}
+        
+        \PY{n}{mine\PYZus{}grid} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{pivot\PYZus{}table}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{values}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{counts} \PY{o}{=} \PY{n}{convolve2d}\PY{p}{(}\PY{n}{mine\PYZus{}grid}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{complex}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{same}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{real}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+        \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{adjacent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{counts} \PY{o}{\PYZhy{}} \PY{n}{mine\PYZus{}grid}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{54}. For rows of the DataFrame that contain a mine, set the
+value in the \texttt{\textquotesingle{}adjacent\textquotesingle{}}
+column to NaN.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{adjacent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+\end{Verbatim}
+
+
+    \textbf{55}. Finally, convert the DataFrame to grid of the adjacent mine
+counts: columns are the \texttt{x} coordinate, rows are the \texttt{y}
+coordinate.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PYZbs{}
+          \PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Plotting}\label{plotting}
+
+\subsubsection{Visualize trends and patterns in
+data}\label{visualize-trends-and-patterns-in-data}
+
+Difficulty: \emph{medium}
+
+To really get a good understanding of the data contained in your
+DataFrame, it is often essential to create plots: if you're lucky,
+trends and anomalies will jump right out at you. This functionality is
+baked into pandas and the puzzles below explore some of what's possible
+with the library.
+
+\textbf{56.} Pandas is highly integrated with the plotting library
+matplotlib, and makes plotting DataFrames very user-friendly! Plotting
+in a notebook environment usually makes use of the following
+boilerplate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\OperatorTok{%}\NormalTok{matplotlib inline}
+\NormalTok{plt.style.use(}\StringTok{'ggplot'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+matplotlib is the plotting library which pandas' plotting functionality
+is built upon, and it is usually aliased to \texttt{plt}.
+
+\texttt{\%matplotlib\ inline} tells the notebook to show plots inline,
+instead of creating them in a separate window.
+
+\texttt{plt.style.use(\textquotesingle{}ggplot\textquotesingle{})} is a
+style theme that most people find agreeable, based upon the styling of
+R's ggplot package.
+
+For starters, make a scatter plot of this random data, but use black X's
+instead of the default markers.
+
+\texttt{df\ =\ pd.DataFrame(\{"xs":{[}1,5,2,8,1{]},\ "ys":{[}4,2,1,9,6{]}\})}
+
+Consult the
+\href{https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.plot.html}{documentation}
+if you get stuck!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{n}{plt}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ggplot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ys}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ys}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{black}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{57.} Columns in your DataFrame can also be used to modify colors
+and sizes. Bill has been keeping track of his performance at work over
+time, as well as how good he was feeling that day, and whether he had a
+cup of coffee in the morning. Make a plot which incorporates all four
+features of this DataFrame.
+
+(Hint: If you're having trouble seeing the plot, try multiplying the
+Series which you choose to represent size by 10 or more)
+
+\emph{The chart doesn't have to be pretty: this isn't a course in data
+viz!}
+
+\begin{verbatim}
+df = pd.DataFrame({"productivity":[5,2,3,1,4,5,6,7,8,3,4,8,9],
+                   "hours_in"    :[1,9,6,5,3,9,2,9,1,7,4,2,2],
+                   "happiness"   :[2,1,3,2,3,1,2,3,1,2,2,1,3],
+                   "caffienated" :[0,0,1,1,0,0,0,0,1,1,0,1,0]})
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{productivity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,}
+                           \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hours\PYZus{}in}\PY{l+s+s2}{\PYZdq{}}    \PY{p}{:}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}
+                           \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{happiness}\PY{l+s+s2}{\PYZdq{}}   \PY{p}{:}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}
+                           \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{caffienated}\PY{l+s+s2}{\PYZdq{}} \PY{p}{:}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hours\PYZus{}in}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{productivity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{happiness} \PY{o}{*} \PY{l+m+mi}{30}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{caffienated}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{58.} What if we want to plot multiple things? Pandas allows you
+to pass in a matplotlib \emph{Axis} object for plots, and plots will
+also return an Axis object.
+
+Make a bar plot of monthly revenue with a line plot of monthly
+advertising spending (numbers in millions)
+
+\begin{verbatim}
+df = pd.DataFrame({"revenue":[57,68,63,71,72,90,80,62,59,51,47,52],
+                   "advertising":[2.1,1.9,2.7,3.0,3.6,3.2,2.7,2.4,1.8,1.6,1.3,1.9],
+                   "month":range(12)
+                  })
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{revenue}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mi}{57}\PY{p}{,}\PY{l+m+mi}{68}\PY{p}{,}\PY{l+m+mi}{63}\PY{p}{,}\PY{l+m+mi}{71}\PY{p}{,}\PY{l+m+mi}{72}\PY{p}{,}\PY{l+m+mi}{90}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{62}\PY{p}{,}\PY{l+m+mi}{59}\PY{p}{,}\PY{l+m+mi}{51}\PY{p}{,}\PY{l+m+mi}{47}\PY{p}{,}\PY{l+m+mi}{52}\PY{p}{]}\PY{p}{,}
+                           \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{advertising}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mf}{2.1}\PY{p}{,}\PY{l+m+mf}{1.9}\PY{p}{,}\PY{l+m+mf}{2.7}\PY{p}{,}\PY{l+m+mf}{3.0}\PY{p}{,}\PY{l+m+mf}{3.6}\PY{p}{,}\PY{l+m+mf}{3.2}\PY{p}{,}\PY{l+m+mf}{2.7}\PY{p}{,}\PY{l+m+mf}{2.4}\PY{p}{,}\PY{l+m+mf}{1.8}\PY{p}{,}\PY{l+m+mf}{1.6}\PY{p}{,}\PY{l+m+mf}{1.3}\PY{p}{,}\PY{l+m+mf}{1.9}\PY{p}{]}\PY{p}{,}
+                           \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{month}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}
+                          \PY{p}{\PYZcb{}}\PY{p}{)}
+        
+        \PY{n}{ax} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{month}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{revenue}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{month}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{advertising}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{secondary\PYZus{}y} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    Now we're finally ready to create a candlestick chart, which is a very
+common tool used to analyze stock price data. A candlestick chart shows
+the opening, closing, highest, and lowest price for a stock during a
+time window. The color of the "candle" (the thick part of the bar) is
+green if the stock closed above its opening price, or red if below.
+
+\begin{figure}
+\centering
+\includegraphics{img/candle.jpg}
+\caption{Candlestick Example}
+\end{figure}
+
+This was initially designed to be a pandas plotting challenge, but it
+just so happens that this type of plot is just not feasible using
+pandas' methods. If you are unfamiliar with matplotlib, we have provided
+a function that will plot the chart for you so long as you can use
+pandas to get the data into the correct format.
+
+Your first step should be to get the data in the correct format using
+pandas' time-series grouping function. We would like each candle to
+represent an hour's worth of data. You can write your own aggregation
+function which returns the open/high/low/close, but pandas has a
+built-in which also does this.
+
+    The below cell contains helper functions. Call
+\texttt{day\_stock\_data()} to generate a DataFrame containing the
+prices a hypothetical stock sold for, and the time the sale occurred.
+Call \texttt{plot\_candlestick(df)} on your properly aggregated and
+formatted stock data to print the candlestick chart.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}This function is designed to create semi\PYZhy{}interesting random stock price data}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k}{def} \PY{n+nf}{float\PYZus{}to\PYZus{}time}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZpc{}}\PY{k}{1} * 60)).zfill(2) + \PYZdq{}:\PYZdq{} + str(int(x*60 \PYZpc{} 1 * 60)).zfill(2)
+        
+        \PY{k}{def} \PY{n+nf}{day\PYZus{}stock\PYZus{}data}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}NYSE is open from 9:30 to 4:00}
+            \PY{n}{time} \PY{o}{=} \PY{l+m+mf}{9.5}
+            \PY{n}{price} \PY{o}{=} \PY{l+m+mi}{100}
+            \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{n}{float\PYZus{}to\PYZus{}time}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{,} \PY{n}{price}\PY{p}{)}\PY{p}{]}
+            \PY{k}{while} \PY{n}{time} \PY{o}{\PYZlt{}} \PY{l+m+mi}{16}\PY{p}{:}
+                \PY{n}{elapsed} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{exponential}\PY{p}{(}\PY{o}{.}\PY{l+m+mi}{001}\PY{p}{)}
+                \PY{n}{time} \PY{o}{+}\PY{o}{=} \PY{n}{elapsed}
+                \PY{k}{if} \PY{n}{time} \PY{o}{\PYZgt{}} \PY{l+m+mi}{16}\PY{p}{:}
+                    \PY{k}{break}
+                \PY{n}{price\PYZus{}diff} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{o}{.}\PY{l+m+mi}{999}\PY{p}{,} \PY{l+m+mf}{1.001}\PY{p}{)}
+                \PY{n}{price} \PY{o}{*}\PY{o}{=} \PY{n}{price\PYZus{}diff}
+                \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{float\PYZus{}to\PYZus{}time}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{,} \PY{n}{price}\PY{p}{)}\PY{p}{)}
+            
+            
+            \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+            \PY{n}{df}\PY{o}{.}\PY{n}{time} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{time}\PY{p}{)}
+            \PY{k}{return} \PY{n}{df}
+        
+        \PY{k}{def} \PY{n+nf}{plot\PYZus{}candlestick}\PY{p}{(}\PY{n}{agg}\PY{p}{)}\PY{p}{:}
+            \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+            \PY{k}{for} \PY{n}{time} \PY{o+ow}{in} \PY{n}{agg}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{time}\PY{o}{.}\PY{n}{hour}\PY{p}{]} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{agg}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{time}\PY{p}{,} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{high}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{low}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{black}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{time}\PY{o}{.}\PY{n}{hour}\PY{p}{]} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{agg}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{time}\PY{p}{,} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{open}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{close}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n}{agg}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{time}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+        
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Price}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hour}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OHLC of Stock Value During Trading Day}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{59.} Generate a day's worth of random stock data, and aggregate
+/ reformat it so that it has hourly summaries of the opening, highest,
+lowest, and closing prices
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df} \PY{o}{=} \PY{n}{day\PYZus{}stock\PYZus{}data}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{agg} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{H}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{ohlc}\PY{p}{(}\PY{p}{)}
+        \PY{n}{agg}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{agg}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{droplevel}\PY{p}{(}\PY{p}{)}
+        \PY{n}{agg}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{agg}\PY{o}{.}\PY{n}{close} \PY{o}{\PYZgt{}} \PY{n}{agg}\PY{o}{.}\PY{n}{open}\PY{p}{)}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{p}{\PYZob{}}\PY{k+kc}{True}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{k+kc}{False}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{red}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        \PY{n}{agg}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{60.} Now that you have your properly-formatted data, try to plot
+it yourself as a candlestick chart. Use the
+\texttt{plot\_candlestick(df)} function above, or matplotlib's
+\href{https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.plot.html}{\texttt{plot}
+documentation} if you get stuck.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{plot\PYZus{}candlestick}\PY{p}{(}\PY{n}{agg}\PY{p}{)}
+\end{Verbatim}
+
+
+    \emph{More exercises to follow soon...}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
